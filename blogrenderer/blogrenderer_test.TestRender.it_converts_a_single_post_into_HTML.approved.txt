@@ -23,6 +23,15 @@
 
 <p>This is a description</p>
 
+<p><p>This is a post.</p>
+
+<p>This is <strong>bold</strong>.</p>
+
+<p>This is <em>italicized</em>.</p>
+
+<p>This is a <a href="https://www.google.com">link</a></p>
+</p>
+
 Tags: <ul><li>go</li><li>tdd</li></ul>
 
 </main>

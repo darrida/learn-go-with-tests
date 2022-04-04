@@ -2,6 +2,7 @@ package blogrenderer_test
 
 import (
 	"bytes"
+	"html/template"
 	"io"
 	"testing"
 
@@ -13,10 +14,18 @@ import (
 func TestRender(t *testing.T) {
 	var (
 		aPost = blogrenderer.Post{
-			Title:       "hello world",
-			Body:        "This is a post",
+			Title: "hello world",
+			Body: `
+This is a post.
+
+This is **bold**.
+
+This is *italicized*.
+
+This is a [link](https://www.google.com)`,
 			Description: "This is a description",
 			Tags:        []string{"go", "tdd"},
+			HTML:        template.HTML(""),
 		}
 	)
 
@@ -40,7 +49,7 @@ func BenchmarkRender(b *testing.B) {
 	var (
 		aPost = blogrenderer.Post{
 			Title:       "hello world",
-			Body:        "This is a post",
+			Body:        "This is a post\nThis is **bold**.\nThis is *italicized*.\nThis is a [link](https://www.google.com)",
 			Description: "This is a description",
 			Tags:        []string{"go", "tdd"},
 		}

@@ -4,6 +4,8 @@ import (
 	"embed"
 	"html/template"
 	"io"
+
+	"github.com/gomarkdown/markdown"
 )
 
 var (
@@ -13,9 +15,14 @@ var (
 
 type Post struct {
 	Title       string
-	Body        string
+	Body        string `accessor:"setter"`
 	Description string
 	Tags        []string
+	HTML        template.HTML
+}
+
+func (p *Post) SetHTML(val string) {
+	p.HTML = template.HTML(val)
 }
 
 type PostRenderer struct {
@@ -32,22 +39,12 @@ func NewPostRenderer() (*PostRenderer, error) {
 }
 
 func (r *PostRenderer) Render(w io.Writer, p Post) error {
+	html := markdown.ToHTML([]byte(p.Body), nil, nil)
+	p.SetHTML(string(html))
+
 	if err := r.templ.Execute(w, p); err != nil {
 		return err
 	}
 
 	return nil
 }
-
-// func Render(w io.Writer, p Post) error {
-// 	templ, err := template.ParseFS(postTemplates, "templates/*.gohtml")
-// 	if err != nil {
-// 		return err
-// 	}
-
-// 	if err := templ.Execute(w, p); err != nil {
-// 		return err
-// 	}
-
-// 	return nil
-// }
