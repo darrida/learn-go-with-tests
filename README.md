@@ -3,4 +3,4 @@
 https://quii.gitbook.io/learn-go-with-tests
 
 ## Checkpoints
-- 3/7/22 6:18pm: "Reflection" (not started)
+- 2022.06.26: "IO and sorting" (beginning of section)
