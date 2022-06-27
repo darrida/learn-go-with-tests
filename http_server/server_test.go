@@ -16,7 +16,7 @@ type StubPlayerStore struct {
 	league   []Player
 }
 
-func (s *StubPlayerStore) GetLeague() []Player {
+func (s *StubPlayerStore) GetLeague() League {
 	return s.league
 }
 
@@ -168,13 +168,14 @@ func TestLeague(t *testing.T) {
 
 func getLeagueFromResponse(t testing.TB, body io.Reader) (league []Player) {
 	t.Helper()
-	err := json.NewDecoder(body).Decode(&league)
+	// err := json.NewDecoder(body).Decode(&league)
+	league, err := NewLeague(body)
 
 	if err != nil {
 		t.Fatalf("Unable to parse response from server %q into slice of Player, '%v'", body, err)
 	}
 
-	return
+	return league
 }
 
 func assertLeague(t testing.TB, got, want []Player) {
