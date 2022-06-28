@@ -7,10 +7,12 @@ import (
 )
 
 func TestRecordingWinsAndRetrievingThem(t *testing.T) {
-	database, cleanDatabase := createTempFile(t, "")
+	database, cleanDatabase := createTempFile(t, `[]`)
 	defer cleanDatabase()
-	store := NewFileSystemPlayerStore(database)
+	store, err := NewFileSystemPlayerStore(database)
+	assertNoError(t, err)
 	// store := NewInMemoryPlayerStore()  // KEEPING FOR FUTURE REFERENCE (2022.06.27 darrida)
+
 	server := NewPlayerServer(store)
 	player := "Pepper"
 
@@ -32,10 +34,9 @@ func TestRecordingWinsAndRetrievingThem(t *testing.T) {
 		assertStatus(t, response.Code, http.StatusOK)
 
 		got := getLeagueFromResponse(t, response.Body)
-		want :=
-			[]Player{
-				{"Pepper", 3},
-			}
+		want := []Player{
+			{"Pepper", 3},
+		}
 		assertLeague(t, got, want)
 	})
 }
