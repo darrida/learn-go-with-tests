@@ -1,6 +1,6 @@
 // KEEPING FOR FUTURE REFERENCE (2022.06.27 darrida)
 
-package main
+package poker
 
 // func NewInMemoryPlayerStore() *InMemoryPlayerStore {
 // 	return &InMemoryPlayerStore{map[string]int{}}
