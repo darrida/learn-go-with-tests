@@ -1,3 +1,3 @@
 ### 2022.06.27 Stopping Place
-- Section: "IO and sorting"
-- Line to search: "We'll create a new type to encapsulate our" (a little under "Another problem" header)
+- Section: "Time"
+- Line to search: "To check we are prompting for the number of players we'll wnt to record"...
