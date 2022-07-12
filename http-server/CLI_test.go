@@ -8,6 +8,11 @@ import (
 	"time"
 )
 
+// var dummyBlindAlerter = &SpyBlindAlerter{}
+// var dummyPlayerStore = &poker.StubPlayerStore{}
+// var dummyStdIn = &bytes.Buffer{}
+// var dummyStdOut = &bytes.Buffer{}
+
 type expectedSchedule struct {
 	expectedScheduleTime time.Duration
 	expectedAmount       int
@@ -87,6 +92,19 @@ func TestCLI(t *testing.T) {
 			})
 		}
 	})
+
+	// t.Run("it prompts the user to enter the number of players", func(t *testing.T) {
+	// 	stdout := &bytes.Buffer{}
+	// 	cli := poker.NewCLI(dummyPlayerStore, dummyStdIn, stdout, dummyBlindAlerter)
+	// 	cli.PlayPoker()
+
+	// 	got := stdout.String()
+	// 	want := "Please enter the number of players: "
+
+	// 	if got != want {
+	// 		t.Errorf("got %q, want %q", got, want)
+	// 	}
+	// })
 }
 
 func assertScheduledAlert(t testing.TB, alert scheduledALert, want expectedSchedule) {

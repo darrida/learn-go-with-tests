@@ -14,14 +14,16 @@ import (
 type CLI struct {
 	playerStore PlayerStore
 	in          *bufio.Scanner
-	alerter     BlindAlerter
+	// out         io.Writer
+	alerter BlindAlerter
 }
 
 func NewCLI(store PlayerStore, in io.Reader, alerter BlindAlerter) *CLI {
 	return &CLI{
 		playerStore: store,
 		in:          bufio.NewScanner(in),
-		alerter:     alerter,
+		// out:         out,
+		alerter: alerter,
 	}
 }
 
