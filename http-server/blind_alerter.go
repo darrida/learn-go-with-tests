@@ -7,12 +7,12 @@ import (
 )
 
 type BlindAlerter interface {
-	ScheduledAlertAt(duration time.Duration, amount int)
+	ScheduleAlertAt(duration time.Duration, amount int)
 }
 
 type BlindAlerterFunc func(duration time.Duration, amount int)
 
-func (a BlindAlerterFunc) ScheduledAlertAt(duration time.Duration, amount int) {
+func (a BlindAlerterFunc) ScheduleAlertAt(duration time.Duration, amount int) {
 	a(duration, amount)
 }
 
